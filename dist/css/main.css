@@ -80,11 +80,48 @@
     width: 70px;
     height: 70px; 
     border-radius: 50%;
-    overflow: hidden;
-    background: #ddd;
+    /*overflow: hidden;*/
+    /*background: #ddd;*/
     position: absolute;
+    border: 2px solid #ddd;
+    background-size: 70px 70px;
+
 }
 
+.user0 {
+    background-image: url("/docs/1.jpg") !important;
+}
+
+.user1 {
+    background-image: url("/docs/2.jpg") !important;
+}
+
+.user2 {
+    background-image: url("/docs/3.jpg") !important;
+}
+
+.user3 {
+    background-image: url("/docs/4.jpg") !important;
+}
+
+.user4 {
+    background-image: url("/docs/5.jpg") !important;
+}
+.user5 {
+    background-image: url("/docs/6.jpg") !important;
+}
+.user6 {
+    background-image: url("/docs/7.jpg") !important;
+}
+.user7 {
+    background-image: url("/docs/8.jpg") !important;
+}
+.user8 {
+    background-image: url("/docs/9.jpg") !important;
+}
+.user9 {
+    background-image: url("/docs/10.jpg") !important;
+}
 .popup {
     display: none;
     font-size: 1.5em;
