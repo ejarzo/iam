@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OMI Spotify App</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="/js/spotify-web-api.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.1/axios.js"></script>
+    <link rel=stylesheet href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <style type="text/css">
+        .profile-image {
+            margin: 0 auto;
+        }
+        .albums {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .album {
+            text-align: center;
+            width: 220px;
+            border: 1px solid #eee;
+            margin: 10px;
+            padding: 10px; 
+        }
+        .album figure {
+            margin: 0 auto;
+        }
+        .album h1 {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>TEST</h1>
+    <p>{{user.display_name}}</p>
+</body>
+</html>

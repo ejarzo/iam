@@ -22,6 +22,10 @@ app.get('/search', function(req, res, next) {
 	res.sendFile(__dirname + '/search.html')
 })
 
+app.get('/user1', function(req, res, next) {
+	res.sendFile(__dirname + '/user1.html')
+})
+
 app.get('/auth', function(req, res, next) {
 	var scopes = ['user-read-private', 'user-read-recently-played']
 	var authorizeURL = spotifyRef().createAuthorizeURL(scopes);

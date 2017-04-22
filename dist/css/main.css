@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+
+* {
+    box-sizing: border-box;
+    font-family: "Roboto Mono";
+    columns: #222;
+}
+
+.profile-image {
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.albums {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.album {
+    text-align: center;
+    width: 220px;
+    border: 1px solid #eee;
+    margin: 10px;
+    padding: 10px; 
+}
+.album figure {
+    margin: 0 auto;
+}
+.album h1 {
+    font-size: 14px;
+}
+
+.input-large {
+    font-size: 2em;
+}
+
+.iam-input {
+    border: none;
+    width: 300px;
+    border-bottom: 3px solid #222;
+}
