@@ -139,11 +139,12 @@
 
         function populate_pool (myEnergy) {
             console.log(myEnergy);
+            var max_energy_diff = Math.max(1-myEnergy, myEnergy)
             for (var i = 0; i < userList.length; i++) {
                 
 
                 var y = Math.random() * $("body").height();
-                var x = Math.abs(energy_diff_to_coord(myEnergy, userList[i].energy));
+                var x = Math.abs(energy_diff_to_coord(myEnergy, userList[i].energy, max_energy_diff));
                 //var x = Math.random() * $("body").width();
                 
                 console.log(x,y);
@@ -155,9 +156,9 @@
             }
         }
 
-        function energy_diff_to_coord (e1, e2) {
+        function energy_diff_to_coord (e1, e2, max_diff) {
             var diff = e1 - e2;
-            var xcoord = diff * $("body").width();
+            var xcoord = diff/max_diff * $("body").width();
             return xcoord;
         }
 
