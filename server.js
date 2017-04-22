@@ -41,6 +41,7 @@ app.get('/auth', function(req, res, next) {
 app.get('/callback', function(req, res, next) {
 	if (req.query.code) {
 		var code = req.query.code
+        console.log(code);
 		var spotify = spotifyRef()
 		spotify.authorizationCodeGrant(code).then(function(data) {
 
@@ -53,7 +54,7 @@ app.get('/callback', function(req, res, next) {
 			return res.redirect('/?error='+err);
 		});
 	} else {
-		return res.redirect('/')		
+		return res.redirect('http://loaclhost:5000/callback')		
 	}
 })
 
