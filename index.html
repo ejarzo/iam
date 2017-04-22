@@ -5,6 +5,8 @@
     <title>OMI Spotify App</title>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="/js/spotify-web-api.js"></script>
+    <script src="/js/jquery-1.11.3.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.1/axios.js"></script>
     <link rel=stylesheet href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.min.css">
@@ -31,84 +33,127 @@
                     <figure class="image is-96x96 profile-image">
                         <img v-if="user.images.length" :src="user.images[0].url" alt="">
                     </figure>
-                    <h1 class="subtitle">{{user.display_name}}</h1>
-                    
+                    <h1 class="user-name">{{user.display_name}}</h1>
                 </div>
-                <div class="input-large">
-                    <span>I am </span>
-                    <input type="text" name="iam" class="iam-input">
-                </div>
+        
+                <div id="iam-text-form">
+                    <div class="input-large">
+                        <span>I am </span>
+                        <input type="text" name="name" id="name" class="iam-input">
+                    </div>
 
-                <div>
-                    <h2>Listening to</h2>
-                    <div class="albums" v-if="recentlyPlayed">
-                        <div class="album">
-                                <a :href="recentlyPlayed.items[0].track.album.external_urls.spotify">
-                                    <figure class="image is-48x48">
-                                        <img :src="recentlyPlayed.items[0].track.album.images[0].url" alt="">
-                                    </figure>
-                                </a>
-                                <h1 class="subtitle">{{recentlyPlayed.items[0].track.name}}</h1>
-                                by <h1 class="subtitle">{{recentlyPlayed.items[0].track.artists[0].name}}</h1>
+                    <div>
+                        <h2>Listening to</h2>
+                        <div class="albums" v-if="recentlyPlayed">
+                            <div class="album">
+                                    <a :href="recentlyPlayed.items[0].track.album.external_urls.spotify">
+                                        <figure class="image is-48x48">
+                                            <img :src="recentlyPlayed.items[0].track.album.images[0].url" alt="">
+                                        </figure>
+                                    </a>
+                                    <span class="subtitle">{{recentlyPlayed.items[0].track.name}}</span>
+                                    <span>by</span>
+                                    <span class="subtitle">{{recentlyPlayed.items[0].track.artists[0].name}}</span>
+                            </div>
                         </div>
                     </div>
+                    <button class="submit" onclick="addUser()">The Pool</button>
                 </div>
             </div>
 
-            <!-- <div class="container">
-                <div class="columns is-multiple">
-                    <div class="column is-6 is-offset-3">
-                        <div class="field">
-                            <p class="control">
-                                <div class="has-text-centered ">
-                                    <a class="button is-primary" href="/auth">Sign in with Spotify</a>
-                                    <a class="button is-primary" href="/search">Search Spotify</a>
-                                </div>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="columns is-multiple" v-if="user">
-                    <div class="column is-12">
-                        <div class="box has-text-centered">
-                            <figure class="image is-96x96 profile-image">
-                                <img v-if="user.images.length" :src="user.images[0].url" alt="">
-                            </figure>
-                            <h1 class="subtitle is-8">{{user.display_name}}</h1>
-                            
-                            <br>
-                            <h2>Recently Played</h2>
-                            <div class="albums" v-if="recentlyPlayed">
-                                <div class="album" v-for="item in recentlyPlayed.items">
-                                        <a :href="item.track.album.external_urls.spotify">
-                                            <figure class="image is-48x48">
-                                                <img :src="item.track.album.images[0].url" alt="">
-                                            </figure>
-                                        </a>
-                                        <h1 class="subtitle">{{item.track.album.name}}</h1>
-                                        <button class="button is-small" @click="findRecommendationsFromTrack(item.track)">Get Recommendations</button>
-                                </div>
-                            </div>
+        </div>
+        <div id="thepool">
+            <div class="pool-section pool-harmony">
+                <h1>Harmonious</h1>
+<!--                 <div class="pool-user">
+                    
+                </div> -->
+            </div>
+            <div class="pool-section pool-dissonance">
+                <h1>Dissonant</h1>
+                <ul>
+                    <!-- <li>diss user</li> -->
+                </ul>
+            </div>
+        </div>
 
-                            <br>
-                            <h2>Recommendations</h2>
-                            <div class="albums" v-if="recommendations">
-                                <div class="album" v-for="item in recommendations.tracks">
-                                    <a :href="item.album.external_urls.spotify">
-                                        <figure class="image is-96x96">
-                                            <img :src="item.album.images[0].url" alt="">
-                                        </figure>
-                                        <h1 class="subtitle">{{item.album.name}}</h1>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+        <div class="popup">
+            yo
         </div>
     </div>
     <script type="text/javascript">
+
+
+
+        var userList = 
+        [{
+            name: "Dan",
+            energy: 0.9,
+            text: "Dan is awesome"
+        }, {
+            name: "Elias",
+            energy: 0.5,
+            text: "Elias is hungry"
+        }];
+
+        var recentlyPlayed;
+        
+        function addUser () {
+            var name = $(".user-name").text();
+            var text = $(".iam-input").val();
+            var lastTrack = recentlyPlayed.items[0].track.name;
+            var trackId = recentlyPlayed.items[0].track.id
+            console.log(name, text, lastTrack, trackId);
+            var features;
+            spotify.getAudioFeaturesForTrack(trackId).then((data) => {
+                features = data;
+                console.log(features);
+                $("#thepool").show();
+                populate_pool(features.energy)
+            })
+        }
+
+        function populate_pool (myEnergy) {
+            console.log(myEnergy);
+            for (var i = 0; i < userList.length; i++) {
+                
+
+                var y = Math.random() * $("body").height();
+                var x = Math.abs(energy_diff_to_coord(myEnergy, userList[i].energy));
+                //var x = Math.random() * $("body").width();
+                
+                console.log(x,y);
+                
+                $("#thepool").append("<div class='pool-user user"+i+"' onmouseover='show_text("+i+","+x+","+y+")' onmouseout='hide_popup()'></div>");
+                
+                $(".user"+i).css("left", x);
+                $(".user"+i).css("top", y);
+            }
+        }
+
+        function energy_diff_to_coord (e1, e2) {
+            var diff = e1 - e2;
+            var xcoord = diff * $("body").width();
+            return xcoord;
+        }
+
+        function show_text (id, x, y) {
+            var name = userList[id].name;
+            var status = userList[id].text;
+            console.log(status);
+            $(".popup").css("left", x+80);
+            $(".popup").css("top", y);
+
+            $(".popup").text(status);
+            $(".popup").show();
+
+        }
+
+        function hide_popup () {
+            $(".popup").hide();
+
+        }
+
         var spotify = new SpotifyWebApi()
         var app = new Vue({
             el: '#app',
@@ -134,11 +179,13 @@
                     })
                     spotify.getMyRecentlyPlayedTracks().then((data) => {
                         console.log(data)
+                        recentlyPlayed = data;
                         this.recentlyPlayed = data
                     })
                 }
             }
         })
+
     </script>
 </body>
 </html>

@@ -3,6 +3,10 @@ var port = process.env.PORT || 5000
 var express = require('express')
 var app = express()
 var SpotifyWebApi = require('spotify-web-api-node');
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
 
 const spotifyRef = () => {
 	return new SpotifyWebApi({
@@ -25,6 +29,8 @@ app.get('/search', function(req, res, next) {
 app.get('/user1', function(req, res, next) {
 	res.sendFile(__dirname + '/user1.html')
 })
+
+
 
 app.get('/auth', function(req, res, next) {
 	var scopes = ['user-read-private', 'user-read-recently-played']

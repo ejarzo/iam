@@ -18,10 +18,15 @@
 }
 .album {
     text-align: center;
-    width: 220px;
+    width: auto;
     border: 1px solid #eee;
     margin: 10px;
     padding: 10px; 
+}
+
+.user-name {
+    font-size: 12px;
+    padding: 20px;
 }
 .album figure {
     margin: 0 auto;
@@ -31,11 +36,60 @@
 }
 
 .input-large {
-    font-size: 2em;
+    font-size: 40px;
+    padding: 30px
 }
 
 .iam-input {
+    font-family: "Roboto Mono";
+    font-size: 40px;
     border: none;
     width: 300px;
-    border-bottom: 3px solid #222;
+    padding-bottom: 2px;
+    border-bottom: 4px solid #222;
+    outline: none !important
+}
+
+#thepool {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #fff;
+    overflow: hidden;
+}
+
+.pool-section {
+    width: 50%;
+    float: left
+}
+
+.pool-section h1 {
+    font-size: 2em
+}
+
+.pool-dissonance h1 {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+
+.pool-user {
+    width: 70px;
+    height: 70px; 
+    border-radius: 50%;
+    overflow: hidden;
+    background: #ddd;
+    position: absolute;
+}
+
+.popup {
+    display: none;
+    font-size: 1.5em;
+    position: absolute;
+    z-index: 100;
+    box-shadow: -2px 2px 25px rgba(0,0,0,0.1);
+    padding: 15px;
 }
