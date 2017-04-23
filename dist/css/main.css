@@ -2,7 +2,7 @@
 
 * {
     box-sizing: border-box;
-    font-family: "Roboto Mono";
+    font-family: "Roboto Mono", monospace;
     columns: #222;
 }
 
@@ -19,11 +19,23 @@
 .album {
     text-align: center;
     width: auto;
-    border: 1px solid #eee;
     margin: 10px;
     padding: 10px; 
 }
-
+figure {
+    display: inline;
+}
+.submit {
+    margin-top: 50px;
+    padding: 10px 20px;
+    font-size: 2em;
+    border: 1px solid #999;
+    /*border: none;*/
+    background: #fff;
+    cursor: pointer;
+/*    box-shadow: -2px 2px 25px rgba(0,0,0,0.3);
+*/
+}
 .user-name {
     font-size: 12px;
     padding: 20px;
@@ -49,7 +61,13 @@
     border-bottom: 4px solid #222;
     outline: none !important
 }
-
+.close-pool {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    padding: 10px;
+}
 #thepool {
     display: none;
     position: absolute;
@@ -59,6 +77,10 @@
     height: 100vh;
     background: #fff;
     overflow: hidden;
+}
+
+.splash {
+    font-size: 3em;
 }
 
 .pool-section {

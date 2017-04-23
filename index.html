@@ -18,15 +18,15 @@
         <div class="section">
             <div class="field">
                 <p class="control">
-                    <div class="has-text-centered ">
-                        <h1>IAm_</h1>
-                        <div v-if="!user">
+                    <div class="has-text-centered" v-if="!user">
+                        <h1 class="splash">I AM _</h1>
+                        <div>
                             <a class="button is-primary" href="/auth">Sign in with Spotify</a>
                         </div>
                     </div>
                 </p>
             </div>
-            
+           <!--  <div class="close-pool" onclick="hide_pool()">X</div> -->
             <div class="user-info has-text-centered" v-if="user">
                 
                 <div class="profile-data" >
@@ -47,7 +47,7 @@
                         <div class="albums" v-if="recentlyPlayed">
                             <div class="album">
                                     <a :href="recentlyPlayed.items[0].track.album.external_urls.spotify">
-                                        <figure class="image is-48x48">
+                                        <figure class="image is-96x96">
                                             <img :src="recentlyPlayed.items[0].track.album.images[0].url" alt="">
                                         </figure>
                                     </a>
@@ -57,7 +57,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="submit" onclick="addUser()">The Pool</button>
+                    <button class="submit" onclick="addUser()">Harmonize</button>
                 </div>
             </div>
 
@@ -65,15 +65,9 @@
         <div id="thepool">
             <div class="pool-section pool-harmony">
                 <h1>&lt;&lt;&lt; Harmonious</h1>
-<!--                 <div class="pool-user">
-                    
-                </div> -->
             </div>
             <div class="pool-section pool-dissonance">
                 <h1>Dissonant &gt;&gt;&gt;</h1>
-                <ul>
-                    <!-- <li>diss user</li> -->
-                </ul>
             </div>
         </div>
 
@@ -179,6 +173,10 @@
             $(".popup").text(status);
             $(".popup").show();
 
+        }
+
+        function hide_pool () {
+            $("#thepool").hide();
         }
 
         function hide_popup () {
